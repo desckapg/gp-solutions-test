@@ -1,4 +1,4 @@
-package com.gpsolutions.hotels.domain.dto;
+package com.gpsolutions.hotels.domain.dto.request;
 
 import com.gpsolutions.hotels.domain.entity.Hotel;
 import java.util.LinkedList;

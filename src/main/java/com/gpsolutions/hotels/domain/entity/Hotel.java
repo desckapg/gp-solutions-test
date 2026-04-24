@@ -47,6 +47,10 @@ public class Hotel extends BaseEntity<Long> {
   @JoinColumn(name = "hotel_id")
   private List<Amenity> amenities;
 
+  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name = "hotel_id")
+  private List<Contact> contacts;
+
   @Override
   public final boolean equals(Object o) {
     if (this == o) {
