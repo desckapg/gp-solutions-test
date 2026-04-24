@@ -1,3 +1,6 @@
 spring:
   application:
     name: gp-solutions-test
+  jpa:
+    hibernate:
+      ddl-auto: none
