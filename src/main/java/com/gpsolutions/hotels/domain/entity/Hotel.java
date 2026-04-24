@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,6 +25,7 @@ import org.hibernate.proxy.HibernateProxy;
 @NoArgsConstructor
 @Setter
 @Getter
+@Builder
 @Entity
 @Table(name = "hotels")
 public class Hotel extends BaseEntity<Long> {
@@ -49,11 +51,13 @@ public class Hotel extends BaseEntity<Long> {
 
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "hotel_id")
+  @Builder.Default
   private List<Amenity> amenities = new LinkedList<>();
 
   @OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER, cascade = CascadeType.ALL,
       orphanRemoval = true)
   @Fetch(FetchMode.JOIN)
+  @Builder.Default
   private List<Contact> contacts = new LinkedList<>();
 
   @Override

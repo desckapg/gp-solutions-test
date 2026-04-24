@@ -92,6 +92,24 @@
       <artifactId>spring-boot-starter-webmvc-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.navercorp.fixturemonkey</groupId>
+      <artifactId>fixture-monkey</artifactId>
+      <version>1.1.19</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.navercorp.fixturemonkey</groupId>
+      <artifactId>fixture-monkey-datafaker</artifactId>
+      <version>1.1.19</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.datafaker</groupId>
+      <artifactId>datafaker</artifactId>
+      <version>2.5.4</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>

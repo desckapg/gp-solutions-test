@@ -8,6 +8,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import org.hibernate.proxy.HibernateProxy;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 @Entity
 @Table(name = "contacts")
 public class Contact extends BaseEntity<Long> {
@@ -30,11 +32,6 @@ public class Contact extends BaseEntity<Long> {
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "hotel_id", nullable = false)
   private Hotel hotel;
-
-  public void setHotel(Hotel hotel) {
-    this.hotel = hotel;
-    this.hotel.getContacts().add(this);
-  }
 
   @Override
   public final boolean equals(Object o) {

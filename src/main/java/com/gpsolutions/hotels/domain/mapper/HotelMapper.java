@@ -25,9 +25,6 @@ public interface HotelMapper {
   @Mapping(target = "address", expression = "java(hotel.getAddress().toString())")
   HotelShortDto toShortDto(Hotel hotel);
 
-  @Mapping(target = "createdAt", ignore = true)
-  @Mapping(target = "updatedAt", ignore = true)
-  @Mapping(target = "id", ignore = true)
   @Mapping(target = "amenities", ignore = true)
   Hotel toEntity(HotelCreateDto hotelCreateDto);
 

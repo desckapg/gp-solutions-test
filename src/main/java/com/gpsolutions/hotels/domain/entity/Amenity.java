@@ -24,9 +24,4 @@ public class Amenity extends BaseEntity<Long> {
   @ManyToOne(fetch = FetchType.LAZY)
   private Hotel hotel;
 
-  public void setHotel(Hotel hotel) {
-    hotel.getAmenities().add(this);
-    this.hotel = hotel;
-  }
-
 }
