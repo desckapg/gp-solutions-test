@@ -68,4 +68,14 @@ public class Address extends BaseEntity<Long> {
         : getClass().hashCode();
   }
 
+  @Override
+  public String toString() {
+    return "%s %s, %s, %s, %s".formatted(
+        houseNumber,
+        street,
+        city,
+        country,
+        postalCode);
+  }
+
 }

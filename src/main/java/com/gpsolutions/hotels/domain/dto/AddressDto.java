@@ -30,4 +30,13 @@ public record AddressDto(
     String postalCode
 ) {
 
+  @Override
+  public String toString() {
+    return "%s %s, %s, %s, %s".formatted(
+        houseNumber,
+        street,
+        city,
+        country,
+        postalCode);
+  }
 }
