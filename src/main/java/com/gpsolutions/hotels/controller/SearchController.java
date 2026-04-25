@@ -26,7 +26,7 @@ public class SearchController {
       @RequestParam(required = false) String country,
       @RequestParam(required = false) List<String> amenities
   ) {
-    return ResponseEntity.ok(hotelService.findAll(new HotelSpecsDto(name, city, brand, country, amenities)));
+    return ResponseEntity.ok(hotelService.findAll(new HotelSpecsDto(name, brand, city, country, amenities)));
   }
 
 }
