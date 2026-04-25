@@ -7,7 +7,6 @@ import com.gpsolutions.hotels.domain.dto.request.HotelCreateDto;
 import com.gpsolutions.hotels.domain.dto.response.HotelDto;
 import com.gpsolutions.hotels.domain.dto.response.HotelShortDto;
 import com.gpsolutions.hotels.domain.entity.Address;
-import com.gpsolutions.hotels.domain.entity.Amenity;
 import com.gpsolutions.hotels.domain.entity.Contact;
 import com.gpsolutions.hotels.domain.entity.Hotel;
 import java.time.LocalTime;
@@ -73,6 +72,7 @@ public class HotelTestData {
         DEFAULT_NAME,
         DEFAULT_BRAND,
         "Test description",
+        new ContactDto(DEFAULT_PHONE, DEFAULT_EMAIL),
         new ArrivalTimeDto(        LocalTime.of(14, 0), LocalTime.of(12, 0)),
         new AddressDto(9, "Pobediteley Avenue", DEFAULT_CITY, DEFAULT_COUNTRY, "220004"),
         List.of("Pool")
@@ -101,12 +101,6 @@ public class HotelTestData {
         "Business center",
         "Meeting rooms"
     );
-  }
-
-  public static Amenity amenityWithName(String name) {
-    Amenity amenity = new Amenity();
-    amenity.setName(name);
-    return amenity;
   }
 
 }
