@@ -17,23 +17,32 @@ public record HotelSpecsDto(
     List<Specification<Hotel>> specifications = new LinkedList<>();
 
     if (StringUtils.hasText(name)) {
-      specifications.add((root, query, builder) -> builder.like(root.get("name"), "%" + name + "%"));
+      specifications.add((root, query, builder) ->
+          builder.like(builder.lower(root.get("name")), "%" + name.toLowerCase() + "%"));
     }
 
     if (StringUtils.hasText(brand)) {
-      specifications.add((root, query, builder) -> builder.equal(root.get("brand"), brand));
+      specifications.add((root, query, builder) ->
+          builder.equal(builder.lower(root.get("brand")), brand.toLowerCase()));
     }
 
     if (StringUtils.hasText(city)) {
-      specifications.add((root, query, builder) -> builder.equal(root.get("city"), city));
+      specifications.add((root, query, builder) ->
+          builder.equal(builder.lower(root.get("city")), city.toLowerCase()));
     }
 
     if (StringUtils.hasText(country)) {
-      specifications.add((root, query, builder) -> builder.equal(root.get("country"), country));
+      specifications.add((root, query, builder) ->
+          builder.equal(builder.lower(root.get("country")), country.toLowerCase()));
     }
 
     if (amenities != null && !amenities.isEmpty()) {
-      specifications.add((root, query, builder) -> root.join("amenities").get("name").in(amenities));
+      List<String> lowerAmenities = amenities.stream()
+          .map(String::toLowerCase)
+          .toList();
+
+      specifications.add((root, query, builder) ->
+          builder.lower(root.join("amenities").get("name")).in(lowerAmenities));
     }
 
     return Specification.allOf(specifications);
