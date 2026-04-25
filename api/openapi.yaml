@@ -1,0 +1,121 @@
+openapi: 3.1.0
+info:
+  version: '1.0'
+  title: openapi
+servers:
+  - url: http://localhost:8092
+paths: {}
+components:
+  schemas:
+    HotelShort:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
+      x-apidog-orders:
+        - id
+        - name
+        - description
+        - address
+        - phone
+      required:
+        - id
+        - name
+        - description
+        - address
+        - phone
+    HotelDetailed:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        brand:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        contacts:
+          $ref: '#/components/schemas/Contacts'
+        arrivalTime:
+          type: object
+          properties:
+            checkIn:
+              type: string
+            checkOut:
+              type: string
+          x-apidog-orders:
+            - checkIn
+            - checkOut
+          required:
+            - checkIn
+        amenities:
+          type: array
+          items:
+            type: string
+      x-apidog-orders:
+        - id
+        - name
+        - description
+        - brand
+        - address
+        - contacts
+        - arrivalTime
+        - amenities
+      required:
+        - id
+        - name
+        - description
+        - brand
+        - address
+        - contacts
+        - arrivalTime
+        - amenities
+    Address:
+      type: object
+      properties:
+        houseNumber:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        postCode:
+          type: string
+      x-apidog-orders:
+        - houseNumber
+        - street
+        - city
+        - country
+        - postCode
+      required:
+        - houseNumber
+        - street
+        - city
+        - country
+        - postCode
+    Contacts:
+      type: object
+      properties:
+        phone:
+          type: string
+        email:
+          type: string
+      x-apidog-orders:
+        - phone
+        - email
+      required:
+        - phone
+        - email
