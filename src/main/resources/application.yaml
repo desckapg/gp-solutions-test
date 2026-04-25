@@ -9,6 +9,8 @@ spring:
   jackson:
     property-naming-strategy: LOWER_CAMEL_CASE
     default-property-inclusion: non_null
+  devtools:
+    add-properties: false
 
 server:
   port: 8092
