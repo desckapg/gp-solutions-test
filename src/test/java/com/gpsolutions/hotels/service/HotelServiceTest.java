@@ -1,4 +1,4 @@
-package com.gpsolutions.hotels;
+package com.gpsolutions.hotels.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -7,6 +7,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.gpsolutions.hotels.HotelTestData;
 import com.gpsolutions.hotels.domain.dto.request.HotelCreateDto;
 import com.gpsolutions.hotels.domain.dto.request.HotelSpecsDto;
 import com.gpsolutions.hotels.domain.entity.Amenity;
