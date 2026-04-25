@@ -63,7 +63,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: house_number
-                  type: VARCHAR(31)
+                  type: INTEGER
                   constraints:
                     nullable: false
               - column:
@@ -82,7 +82,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: postal_code
+                  name: post_code
                   type: VARCHAR(20)
                   constraints:
                     nullable: false
@@ -120,7 +120,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: phone_number
+                  name: phone
                   type: VARCHAR(32)
                   constraints:
                     nullable: false

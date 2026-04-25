@@ -24,7 +24,7 @@ import org.hibernate.proxy.HibernateProxy;
 public class Address extends BaseEntity<Long> {
 
   @Column(name = "house_number")
-  private String houseNumber;
+  private Integer houseNumber;
 
   @Column(name = "street")
   private String street;
@@ -35,7 +35,7 @@ public class Address extends BaseEntity<Long> {
   @Column(name = "country")
   private String country;
 
-  @Column(name = "postal_code")
+  @Column(name = "post_code")
   private String postCode;
 
   @OneToOne(fetch = FetchType.LAZY)

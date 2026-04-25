@@ -23,7 +23,7 @@ import org.hibernate.proxy.HibernateProxy;
 @Table(name = "contacts")
 public class Contact extends BaseEntity<Long> {
 
-  @Column(name = "phone_number")
+  @Column(name = "phone")
   private String phone;
 
   @Column(name = "email")

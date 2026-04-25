@@ -39,7 +39,7 @@ public class HotelTestData {
     hotel.setAmenities(new LinkedList<>());
 
     Address address = new Address();
-    address.setHouseNumber("9");
+    address.setHouseNumber(9);
     address.setStreet("Pobediteley Avenue");
     address.setCity(DEFAULT_CITY);
     address.setCountry(DEFAULT_COUNTRY);
@@ -61,7 +61,7 @@ public class HotelTestData {
         DEFAULT_NAME,
         DEFAULT_BRAND,
         "Test description",
-        new AddressDto("9", "Pobediteley Avenue", DEFAULT_CITY, DEFAULT_COUNTRY, "220004"),
+        new AddressDto(9, "Pobediteley Avenue", DEFAULT_CITY, DEFAULT_COUNTRY, "220004"),
         new ContactDto(DEFAULT_PHONE, DEFAULT_EMAIL),
         new ArrivalTimeDto(LocalTime.of(14, 0), LocalTime.of(12, 0))
     );
@@ -74,7 +74,7 @@ public class HotelTestData {
         DEFAULT_BRAND,
         "Test description",
         new ArrivalTimeDto(        LocalTime.of(14, 0), LocalTime.of(12, 0)),
-        new AddressDto("9", "Pobediteley Avenue", DEFAULT_CITY, DEFAULT_COUNTRY, "220004"),
+        new AddressDto(9, "Pobediteley Avenue", DEFAULT_CITY, DEFAULT_COUNTRY, "220004"),
         List.of("Pool")
     );
   }

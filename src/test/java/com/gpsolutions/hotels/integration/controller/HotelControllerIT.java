@@ -58,7 +58,7 @@ class HotelControllerIT extends AbstractIntegrationTest {
 
     // then
     assertThat(result).hasStatusOk();
-    assertThat(result).bodyJson().extractingPath("$.address.houseNumber").asString()
+    assertThat(result).bodyJson().extractingPath("$.address.houseNumber").asNumber()
         .isEqualTo(EXISTING_HOUSE_NUMBER);
     assertThat(result).bodyJson().extractingPath("$.address.street").asString()
         .isEqualTo(EXISTING_STREET);
@@ -110,7 +110,7 @@ class HotelControllerIT extends AbstractIntegrationTest {
           "description": "The DoubleTree by Hilton Hotel Minsk offers 193 luxurious rooms in the Belorussian capital and stunning views of Minsk city from the hotel's 20th floor ...",
           "address":
         	{
-        		"houseNumber": "9",
+        		"houseNumber": 9,
         		"street": "Pobediteley Avenue",
         		"city": "Minsk",
         		"country": "Belarus",

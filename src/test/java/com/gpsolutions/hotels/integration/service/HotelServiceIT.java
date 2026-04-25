@@ -29,7 +29,7 @@ class HotelServiceIT extends AbstractIntegrationTest {
       "Integration Test Hotel",
       "Integration Brand",
       "Integration test description",
-      new AddressDto("77", "Test Street", "Test City", "Test Country", "77777"),
+      new AddressDto(77, "Test Street", "Test City", "Test Country", "77777"),
       new ContactDto("+1 (555) 700-0001", "integration-hotel@mail.com"),
       new ArrivalTimeDto(LocalTime.of(14, 0), LocalTime.of(11, 0))
   );
@@ -81,7 +81,7 @@ class HotelServiceIT extends AbstractIntegrationTest {
     assertThat(firstHotel.name()).isEqualTo(EXISTING_HOTEL_NAME);
     assertThat(firstHotel.description()).isEqualTo(EXISTING_HOTEL_DESCRIPTION);
     assertThat(firstHotel.address())
-        .isEqualTo("12A Main Street, New York, United States, 10001");
+        .isEqualTo("1 Main Street, New York, United States, 10001");
     assertThat(firstHotel.phone()).isIn("(555) 100-2345", "+1-555-111-0001");
   }
 
