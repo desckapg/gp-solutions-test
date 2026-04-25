@@ -4,7 +4,31 @@ info:
   title: openapi
 servers:
   - url: http://localhost:8092
-paths: {}
+paths:
+  /property-view/hotels:
+    get:
+      summary: Get all hotels
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HotelShort'
+  /property-view/hotels/{id}:
+    get:
+      summary: Get hotel by {id}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HotelDetailed'
+        '404':
+          description: Not Found
 components:
   schemas:
     HotelShort:
