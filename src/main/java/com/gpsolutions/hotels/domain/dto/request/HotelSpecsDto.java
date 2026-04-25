@@ -4,6 +4,7 @@ import com.gpsolutions.hotels.domain.entity.Hotel;
 import java.util.LinkedList;
 import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.StringUtils;
 
 public record HotelSpecsDto(
     String name,
@@ -15,23 +16,23 @@ public record HotelSpecsDto(
   public Specification<Hotel> convertToSpecification() {
     List<Specification<Hotel>> specifications = new LinkedList<>();
 
-    if (name != null) {
+    if (StringUtils.hasText(name)) {
       specifications.add((root, query, builder) -> builder.like(root.get("name"), "%" + name + "%"));
     }
 
-    if (brand != null) {
+    if (StringUtils.hasText(brand)) {
       specifications.add((root, query, builder) -> builder.equal(root.get("brand"), brand));
     }
 
-    if (city != null) {
+    if (StringUtils.hasText(city)) {
       specifications.add((root, query, builder) -> builder.equal(root.get("city"), city));
     }
 
-    if (country != null) {
+    if (StringUtils.hasText(country)) {
       specifications.add((root, query, builder) -> builder.equal(root.get("country"), country));
     }
 
-    if (amenities != null) {
+    if (amenities != null && !amenities.isEmpty()) {
       specifications.add((root, query, builder) -> root.join("amenities").get("name").in(amenities));
     }
 
