@@ -9,18 +9,23 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalTime;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.proxy.HibernateProxy;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+@Builder
 @Entity
 @Table(name = "hotels")
 public class Hotel extends BaseEntity<Long> {
@@ -40,12 +45,20 @@ public class Hotel extends BaseEntity<Long> {
   @Column(name = "check_out_time")
   private LocalTime checkOutTime;
 
-  @OneToOne(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToOne(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true, optional = false)
+  @Fetch(FetchMode.JOIN)
   private Address address;
 
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "hotel_id")
-  private List<Amenity> amenities;
+  @Builder.Default
+  private List<Amenity> amenities = new LinkedList<>();
+
+  @OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER, cascade = CascadeType.ALL,
+      orphanRemoval = true)
+  @Fetch(FetchMode.JOIN)
+  @Builder.Default
+  private List<Contact> contacts = new LinkedList<>();
 
   @Override
   public final boolean equals(Object o) {

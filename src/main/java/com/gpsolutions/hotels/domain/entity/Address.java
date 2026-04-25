@@ -8,6 +8,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import org.hibernate.proxy.HibernateProxy;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 @Entity
 @Table(name = "addresses")
 public class Address extends BaseEntity<Long> {
@@ -66,6 +68,16 @@ public class Address extends BaseEntity<Long> {
     return this instanceof HibernateProxy proxy ? proxy.getHibernateLazyInitializer()
                                                   .getPersistentClass().hashCode()
         : getClass().hashCode();
+  }
+
+  @Override
+  public String toString() {
+    return "%s %s, %s, %s, %s".formatted(
+        houseNumber,
+        street,
+        city,
+        country,
+        postalCode);
   }
 
 }

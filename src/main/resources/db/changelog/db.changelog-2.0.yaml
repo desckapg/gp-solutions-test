@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: desckapg
+      preConditions:
+        - onFail: HALT
+          tableExists:
+            tableName: hotels
+      changes:
+        - addDefaultValue:
+            tableName: hotels
+            columnName: created_at
+            defaultValueComputed: CURRENT_TIMESTAMP()
+        - addDefaultValue:
+            tableName: hotels
+            columnName: updated_at
+            defaultValueComputed: CURRENT_TIMESTAMP()
+  - changeSet:
+      id: 2
+      author: desckapg
+      preConditions:
+        - onFail: HALT
+          tableExists:
+            tableName: addresses
+      changes:
+        - addDefaultValue:
+            tableName: addresses
+            columnName: created_at
+            defaultValueComputed: CURRENT_TIMESTAMP()
+        - addDefaultValue:
+            tableName: addresses
+            columnName: updated_at
+            defaultValueComputed: CURRENT_TIMESTAMP()
+  - changeSet:
+      id: 3
+      author: desckapg
+      preConditions:
+        - onFail: HALT
+          tableExists:
+            tableName: contacts
+      changes:
+        - addDefaultValue:
+            tableName: contacts
+            columnName: created_at
+            defaultValueComputed: CURRENT_TIMESTAMP()
+        - addDefaultValue:
+            tableName: contacts
+            columnName: updated_at
+            defaultValueComputed: CURRENT_TIMESTAMP()
+  - changeSet:
+      id: 4
+      author: desckapg
+      preConditions:
+        - onFail: HALT
+          tableExists:
+            tableName: amenities
+      changes:
+        - addDefaultValue:
+            tableName: amenities
+            columnName: created_at
+            defaultValueComputed: CURRENT_TIMESTAMP()
+        - addDefaultValue:
+            tableName: amenities
+            columnName: updated_at
+            defaultValueComputed: CURRENT_TIMESTAMP()
