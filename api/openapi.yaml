@@ -17,6 +17,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/HotelShort'
+    post:
+      summary: Create hotel
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HotelShort'
+              examples:
+                Example 1:
+                  value:
+                    id: 1
+                    name: DoubleTree by Hilton Minsk
+                    description: >-
+                      The DoubleTree by Hilton Hotel Minsk offers 193 luxurious
+                      rooms in the Belorussian capital and stunning views of
+                      Minsk city from the hotel's 20th floor ...
+                    address: 9 Pobediteley Avenue, Minsk, 220004, Belarus
+                    phone: +375 17 309-80-00
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HotelCreate'
+            examples: {}
   /property-view/hotels/{id}:
     get:
       summary: Get hotel by {id}
@@ -29,6 +55,52 @@ paths:
                 $ref: '#/components/schemas/HotelDetailed'
         '404':
           description: Not Found
+  /property-view/search:
+    get:
+      summary: Get all hotels by criteria
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HotelShort'
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+        - in: query
+          name: brand
+          schema:
+            type: string
+        - in: query
+          name: city
+          schema:
+            type: string
+        - in: query
+          name: country
+          schema:
+            type: string
+        - in: query
+          name: amenities
+          schema:
+            type: string
+  /property-view/hotels/{id}/amenities:
+    post:
+      summary: Add amenities to hotel with {id}
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
 components:
   schemas:
     HotelShort:
@@ -53,7 +125,6 @@ components:
       required:
         - id
         - name
-        - description
         - address
         - phone
     HotelDetailed:
@@ -99,7 +170,6 @@ components:
       required:
         - id
         - name
-        - description
         - brand
         - address
         - contacts
@@ -143,3 +213,41 @@ components:
       required:
         - phone
         - email
+    HotelCreate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        brand:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        contacts:
+          $ref: '#/components/schemas/Contacts'
+        arrivalTime:
+          type: object
+          properties:
+            checkIn:
+              type: string
+            checkOut:
+              type: string
+          x-apidog-orders:
+            - checkIn
+            - checkOut
+          required:
+            - checkIn
+      x-apidog-orders:
+        - name
+        - description
+        - brand
+        - address
+        - contacts
+        - arrivalTime
+      required:
+        - name
+        - brand
+        - address
+        - contacts
+        - arrivalTime
