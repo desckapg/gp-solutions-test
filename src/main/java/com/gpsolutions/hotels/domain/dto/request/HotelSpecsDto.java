@@ -28,12 +28,12 @@ public record HotelSpecsDto(
 
     if (StringUtils.hasText(city)) {
       specifications.add((root, query, builder) ->
-          builder.equal(builder.lower(root.get("city")), city.toLowerCase()));
+          builder.equal(builder.lower(root.join("address").get("city")), city.toLowerCase()));
     }
 
     if (StringUtils.hasText(country)) {
       specifications.add((root, query, builder) ->
-          builder.equal(builder.lower(root.get("country")), country.toLowerCase()));
+          builder.equal(builder.lower(root.join("address").get("country")), country.toLowerCase()));
     }
 
     if (amenities != null && !amenities.isEmpty()) {
