@@ -4,6 +4,7 @@ import com.gpsolutions.hotels.domain.entity.Hotel;
 import java.util.LinkedList;
 import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.StringUtils;
 
 public record HotelSpecsDto(
     String name,
@@ -15,24 +16,33 @@ public record HotelSpecsDto(
   public Specification<Hotel> convertToSpecification() {
     List<Specification<Hotel>> specifications = new LinkedList<>();
 
-    if (name != null) {
-      specifications.add((root, query, builder) -> builder.like(root.get("name"), "%" + name + "%"));
+    if (StringUtils.hasText(name)) {
+      specifications.add((root, query, builder) ->
+          builder.like(builder.lower(root.get("name")), "%" + name.toLowerCase() + "%"));
     }
 
-    if (brand != null) {
-      specifications.add((root, query, builder) -> builder.equal(root.get("brand"), brand));
+    if (StringUtils.hasText(brand)) {
+      specifications.add((root, query, builder) ->
+          builder.equal(builder.lower(root.get("brand")), brand.toLowerCase()));
     }
 
-    if (city != null) {
-      specifications.add((root, query, builder) -> builder.equal(root.get("city"), city));
+    if (StringUtils.hasText(city)) {
+      specifications.add((root, query, builder) ->
+          builder.equal(builder.lower(root.join("address").get("city")), city.toLowerCase()));
     }
 
-    if (country != null) {
-      specifications.add((root, query, builder) -> builder.equal(root.get("country"), country));
+    if (StringUtils.hasText(country)) {
+      specifications.add((root, query, builder) ->
+          builder.equal(builder.lower(root.join("address").get("country")), country.toLowerCase()));
     }
 
-    if (amenities != null) {
-      specifications.add((root, query, builder) -> root.join("amenities").get("name").in(amenities));
+    if (amenities != null && !amenities.isEmpty()) {
+      List<String> lowerAmenities = amenities.stream()
+          .map(String::toLowerCase)
+          .toList();
+
+      specifications.add((root, query, builder) ->
+          builder.lower(root.join("amenities").get("name")).in(lowerAmenities));
     }
 
     return Specification.allOf(specifications);
