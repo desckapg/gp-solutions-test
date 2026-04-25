@@ -101,6 +101,50 @@ paths:
               type: array
               items:
                 type: string
+  /property-view/histogram/city:
+    get:
+      summary: Find hotels count groupped by city
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+  /property-view/histogram/brand:
+    get:
+      summary: Find hotels count groupped by brand
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+  /property-view/histogram/amenities:
+    get:
+      summary: Find hotels count groupped by amenities
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+  /property-view/histogram/country:
+    get:
+      summary: Find hotels count groupped by country
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
 components:
   schemas:
     HotelShort:
