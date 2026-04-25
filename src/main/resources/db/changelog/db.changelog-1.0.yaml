@@ -29,8 +29,6 @@ databaseChangeLog:
               - column:
                   name: brand
                   type: VARCHAR(255)
-                  constraints:
-                    nullable: false
               - column:
                   name: check_in_time
                   type: TIME
