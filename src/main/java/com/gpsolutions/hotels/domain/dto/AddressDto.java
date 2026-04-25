@@ -37,7 +37,7 @@ public record AddressDto(
         houseNumber,
         street,
         city,
-        country,
-        postCode);
+        postCode,
+        country);
   }
 }

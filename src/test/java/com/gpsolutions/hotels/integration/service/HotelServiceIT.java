@@ -81,7 +81,7 @@ class HotelServiceIT extends AbstractIntegrationTest {
     assertThat(firstHotel.name()).isEqualTo(EXISTING_HOTEL_NAME);
     assertThat(firstHotel.description()).isEqualTo(EXISTING_HOTEL_DESCRIPTION);
     assertThat(firstHotel.address())
-        .isEqualTo("1 Main Street, New York, United States, 10001");
+        .isEqualTo("1 Main Street, New York, 10001, United States");
     assertThat(firstHotel.phone()).isIn("(555) 100-2345", "+1-555-111-0001");
   }
 
