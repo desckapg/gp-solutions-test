@@ -76,8 +76,8 @@ public class Address extends BaseEntity<Long> {
         houseNumber,
         street,
         city,
-        country,
-        postCode);
+        postCode,
+        country);
   }
 
 }
