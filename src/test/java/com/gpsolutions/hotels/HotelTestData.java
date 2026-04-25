@@ -36,7 +36,6 @@ public class HotelTestData {
     hotel.setCheckInTime(LocalTime.of(14, 0));
     hotel.setCheckOutTime(LocalTime.of(12, 0));
     hotel.setAmenities(new LinkedList<>());
-    hotel.setContacts(new LinkedList<>());
 
     Address address = new Address();
     address.setHouseNumber("9");
@@ -51,7 +50,7 @@ public class HotelTestData {
     contact.setPhoneNumber(DEFAULT_PHONE);
     contact.setEmail(DEFAULT_EMAIL);
     contact.setHotel(hotel);
-    hotel.getContacts().add(contact);
+    hotel.setContacts(contact);
 
     return hotel;
   }
@@ -62,7 +61,7 @@ public class HotelTestData {
         DEFAULT_BRAND,
         "Test description",
         new AddressDto("9", "Pobediteley Avenue", DEFAULT_CITY, DEFAULT_COUNTRY, "220004"),
-        List.of(new ContactDto(DEFAULT_PHONE, DEFAULT_EMAIL)),
+        new ContactDto(DEFAULT_PHONE, DEFAULT_EMAIL),
         LocalTime.of(14, 0),
         LocalTime.of(12, 0)
     );

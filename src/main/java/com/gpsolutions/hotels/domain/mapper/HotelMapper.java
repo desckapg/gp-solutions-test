@@ -21,7 +21,7 @@ public interface HotelMapper {
   @Mapping(target = "amenities", expression = "java(mapAmenityNames(hotel))")
   HotelDto toDto(Hotel hotel);
 
-  @Mapping(target = "phone", expression = "java(extractPrimaryPhone(hotel))")
+  @Mapping(target = "phone", expression = "java(hotel.getContacts().getPhoneNumber())")
   @Mapping(target = "address", expression = "java(hotel.getAddress().toString())")
   HotelShortDto toShortDto(Hotel hotel);
 
@@ -31,11 +31,7 @@ public interface HotelMapper {
   @AfterMapping
   default void linkRelations(@MappingTarget Hotel hotel) {
     hotel.getAddress().setHotel(hotel);
-    hotel.getContacts().forEach(contact -> contact.setHotel(hotel));
-  }
-
-  default String extractPrimaryPhone(Hotel hotel) {
-    return hotel.getContacts().get(0).getPhoneNumber();
+    hotel.getContacts().setHotel(hotel);
   }
 
   default List<String> mapAmenityNames(Hotel hotel) {

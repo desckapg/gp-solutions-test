@@ -50,7 +50,7 @@ class HotelServiceIT extends AbstractIntegrationTest {
       "Integration Brand",
       "Integration test description",
       new AddressDto("77", "Test Street", "Test City", "Test Country", "77777"),
-      List.of(new ContactDto("+1 (555) 700-0001", "integration-hotel@mail.com")),
+      new ContactDto("+1 (555) 700-0001", "integration-hotel@mail.com"),
       LocalTime.of(14, 0),
       LocalTime.of(11, 0)
   );
@@ -152,12 +152,11 @@ class HotelServiceIT extends AbstractIntegrationTest {
     // then
     assertThat(result.id()).isNotNull();
     assertThat(result.name()).isEqualTo(dto.name());
-    assertThat(result.phone()).isEqualTo(dto.contacts().get(0).phoneNumber());
+    assertThat(result.phone()).isEqualTo(dto.contacts().phoneNumber());
 
     var persistedHotel = entityManager.find(Hotel.class, result.id());
     assertThat(persistedHotel).isNotNull();
     assertThat(persistedHotel.getAddress().getCity()).isEqualTo(dto.address().city());
-    assertThat(persistedHotel.getContacts()).hasSize(1);
   }
 
   @Test
