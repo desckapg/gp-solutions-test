@@ -1,10 +1,11 @@
 package com.gpsolutions.hotels.service;
 
 import com.gpsolutions.hotels.domain.dto.request.HotelCreateDto;
-import com.gpsolutions.hotels.domain.dto.response.HotelDto;
 import com.gpsolutions.hotels.domain.dto.request.HotelSpecsDto;
+import com.gpsolutions.hotels.domain.dto.response.HotelDto;
 import com.gpsolutions.hotels.domain.dto.response.HotelShortDto;
 import java.util.List;
+import java.util.Map;
 
 public interface HotelService {
 
@@ -17,5 +18,13 @@ public interface HotelService {
   HotelShortDto save(HotelCreateDto hotelDto);
 
   void addAmenities(Long id, List<String> amenities);
+
+  Map<String, Integer> queryCountGroupedByBrand();
+
+  Map<String, Integer> queryCountGroupedByAmenities();
+
+  Map<String, Integer> queryCountGroupedByCity();
+
+  Map<String, Integer> queryCountGroupedByCountry();
 
 }

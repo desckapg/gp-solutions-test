@@ -11,6 +11,7 @@ import com.gpsolutions.hotels.exception.ResourceNotFoundException;
 import com.gpsolutions.hotels.repository.HotelRepository;
 import com.gpsolutions.hotels.service.HotelService;
 import java.util.List;
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,5 +70,27 @@ public class HotelServiceImpl implements HotelService {
         .toList();
 
     amenityRepository.saveAll(amenityEntities);
+  }
+
+  @Override
+  public Map<String, Integer> queryCountGroupedByBrand() {
+    return hotelRepository.queryCountGroupedByBrand();
+  }
+
+  @Override
+  public Map<String, Integer> queryCountGroupedByAmenities() {
+    return hotelRepository.queryCountGroupedByAmenities();
+  }
+
+  @Override
+  public Map<String, Integer> queryCountGroupedByCity() {
+    return hotelRepository.queryCountGroupedByCity();
+
+  }
+
+  @Override
+  public Map<String, Integer> queryCountGroupedByCountry() {
+    return hotelRepository.queryCountGroupedByCountry();
+
   }
 }
