@@ -36,7 +36,7 @@ public class Address extends BaseEntity<Long> {
   private String country;
 
   @Column(name = "postal_code")
-  private String postalCode;
+  private String postCode;
 
   @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "hotel_id")
@@ -77,7 +77,7 @@ public class Address extends BaseEntity<Long> {
         street,
         city,
         country,
-        postalCode);
+        postCode);
   }
 
 }

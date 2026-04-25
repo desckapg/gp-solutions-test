@@ -1,3 +1,7 @@
 spring:
   jpa:
     show-sql: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:integration-test-data.sql

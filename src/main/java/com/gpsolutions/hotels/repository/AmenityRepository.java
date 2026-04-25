@@ -1,4 +1,4 @@
-package com.gpsolutions.hotels.domain.mapper;
+package com.gpsolutions.hotels.repository;
 
 import com.gpsolutions.hotels.domain.entity.Amenity;
 import org.springframework.data.jpa.repository.JpaRepository;

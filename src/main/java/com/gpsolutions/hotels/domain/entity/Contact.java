@@ -24,7 +24,7 @@ import org.hibernate.proxy.HibernateProxy;
 public class Contact extends BaseEntity<Long> {
 
   @Column(name = "phone_number")
-  private String phoneNumber;
+  private String phone;
 
   @Column(name = "email")
   private String email;

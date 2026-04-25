@@ -27,7 +27,7 @@ public record AddressDto(
     @NotBlank(
         message = "Postal code must be present"
     )
-    String postalCode
+    String postCode
 ) {
 
   @Override
@@ -37,6 +37,6 @@ public record AddressDto(
         street,
         city,
         country,
-        postalCode);
+        postCode);
   }
 }

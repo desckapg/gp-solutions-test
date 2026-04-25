@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import com.gpsolutions.hotels.domain.dto.AddressDto;
+import com.gpsolutions.hotels.domain.dto.ArrivalTimeDto;
 import com.gpsolutions.hotels.domain.dto.ContactDto;
 import com.gpsolutions.hotels.domain.dto.request.HotelCreateDto;
 import com.gpsolutions.hotels.domain.dto.request.HotelSpecsDto;
@@ -24,35 +25,13 @@ import org.springframework.boot.jpa.test.autoconfigure.TestEntityManager;
 @AllArgsConstructor
 class HotelServiceIT extends AbstractIntegrationTest {
 
-  private static final long EXISTING_HOTEL_ID = 1L;
-  private static final long UNKNOWN_HOTEL_ID = Long.MAX_VALUE;
-  private static final int SEEDED_HOTELS_COUNT = 1000;
-
-  private static final String EXISTING_HOTEL_NAME = "Grand Pacific Hotel";
-  private static final String EXISTING_HOTEL_BRAND = "Acme Corporation";
-  private static final String EXISTING_HOTEL_DESCRIPTION =
-      "Premium quality product designed for everyday use with durable materials.";
-
-  private static final String EXISTING_HOUSE_NUMBER = "12A";
-  private static final String EXISTING_STREET = "Main Street";
-  private static final String EXISTING_CITY = "New York";
-  private static final String EXISTING_COUNTRY = "United States";
-  private static final String EXISTING_POSTAL_CODE = "10001";
-
-  private static final List<String> EXISTING_HOTEL_AMENITIES = List.of(
-      "Swimming Pool",
-      "Putting Green",
-      "High Ceilings"
-  );
-
   private static final HotelCreateDto CREATE_DTO = new HotelCreateDto(
       "Integration Test Hotel",
       "Integration Brand",
       "Integration test description",
       new AddressDto("77", "Test Street", "Test City", "Test Country", "77777"),
       new ContactDto("+1 (555) 700-0001", "integration-hotel@mail.com"),
-      LocalTime.of(14, 0),
-      LocalTime.of(11, 0)
+      new ArrivalTimeDto(LocalTime.of(14, 0), LocalTime.of(11, 0))
   );
 
   private final HotelService hotelService;
@@ -69,13 +48,13 @@ class HotelServiceIT extends AbstractIntegrationTest {
     assertThat(result.name()).isEqualTo(EXISTING_HOTEL_NAME);
     assertThat(result.brand()).isEqualTo(EXISTING_HOTEL_BRAND);
     assertThat(result.description()).isEqualTo(EXISTING_HOTEL_DESCRIPTION);
-    assertThat(result.checkInTime()).isEqualTo(LocalTime.of(14, 0));
-    assertThat(result.checkOutTime()).isEqualTo(LocalTime.of(11, 0));
+    assertThat(result.arrivalTime().checkIn()).isEqualTo(LocalTime.of(14, 0));
+    assertThat(result.arrivalTime().checkOut()).isEqualTo(LocalTime.of(11, 0));
     assertThat(result.address().houseNumber()).isEqualTo(EXISTING_HOUSE_NUMBER);
     assertThat(result.address().street()).isEqualTo(EXISTING_STREET);
     assertThat(result.address().city()).isEqualTo(EXISTING_CITY);
     assertThat(result.address().country()).isEqualTo(EXISTING_COUNTRY);
-    assertThat(result.address().postalCode()).isEqualTo(EXISTING_POSTAL_CODE);
+    assertThat(result.address().postCode()).isEqualTo(EXISTING_POSTAL_CODE);
     assertThat(result.amenities()).containsAll(EXISTING_HOTEL_AMENITIES);
   }
 
@@ -152,7 +131,7 @@ class HotelServiceIT extends AbstractIntegrationTest {
     // then
     assertThat(result.id()).isNotNull();
     assertThat(result.name()).isEqualTo(dto.name());
-    assertThat(result.phone()).isEqualTo(dto.contacts().phoneNumber());
+    assertThat(result.phone()).isEqualTo(dto.contacts().phone());
 
     var persistedHotel = entityManager.find(Hotel.class, result.id());
     assertThat(persistedHotel).isNotNull();
