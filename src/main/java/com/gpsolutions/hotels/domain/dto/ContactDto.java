@@ -13,7 +13,7 @@ public record ContactDto(
         regexp = "^\\+?[0-9. ()-]{7,25}$",
         message = "Phone number is invalid"
     )
-    String phoneNumber,
+    String phone,
 
     @NotBlank(
         message = "Email must be present"

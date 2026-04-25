@@ -1,11 +1,27 @@
 package com.gpsolutions.hotels.integration;
 
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
-import org.springframework.test.context.jdbc.SqlMergeMode;
-import org.springframework.test.context.jdbc.SqlMergeMode.MergeMode;
+import java.util.List;
 
-@SqlMergeMode(MergeMode.OVERRIDE)
-@Sql(scripts = "classpath:integration-test-data.sql", executionPhase = ExecutionPhase.BEFORE_TEST_CLASS)
+@IT
 public abstract class AbstractIntegrationTest {
+
+  protected static final long EXISTING_HOTEL_ID = 1L;
+  protected static final long UNKNOWN_HOTEL_ID = Long.MAX_VALUE;
+  protected static final int SEEDED_HOTELS_COUNT = 1000;
+
+  protected static final String EXISTING_HOTEL_NAME = "Grand Pacific Hotel";
+  protected static final String EXISTING_HOTEL_BRAND = "GrandVista Hotels";
+  protected static final String EXISTING_HOTEL_DESCRIPTION =
+      "upscale haven — close to the university campus";
+  protected static final Integer EXISTING_HOUSE_NUMBER = 1;
+  protected static final String EXISTING_STREET = "Main Street";
+  protected static final String EXISTING_CITY = "New York";
+  protected static final String EXISTING_COUNTRY = "United States";
+  protected static final String EXISTING_POSTAL_CODE = "10001";
+
+  protected static final List<String> EXISTING_HOTEL_AMENITIES = List.of(
+      "Swimming Pool",
+      "Putting Green",
+      "High Ceilings"
+  );
 }

@@ -1,6 +1,7 @@
 package com.gpsolutions.hotels;
 
 import com.gpsolutions.hotels.domain.dto.AddressDto;
+import com.gpsolutions.hotels.domain.dto.ArrivalTimeDto;
 import com.gpsolutions.hotels.domain.dto.ContactDto;
 import com.gpsolutions.hotels.domain.dto.request.HotelCreateDto;
 import com.gpsolutions.hotels.domain.dto.response.HotelDto;
@@ -36,22 +37,21 @@ public class HotelTestData {
     hotel.setCheckInTime(LocalTime.of(14, 0));
     hotel.setCheckOutTime(LocalTime.of(12, 0));
     hotel.setAmenities(new LinkedList<>());
-    hotel.setContacts(new LinkedList<>());
 
     Address address = new Address();
-    address.setHouseNumber("9");
+    address.setHouseNumber(9);
     address.setStreet("Pobediteley Avenue");
     address.setCity(DEFAULT_CITY);
     address.setCountry(DEFAULT_COUNTRY);
-    address.setPostalCode("220004");
+    address.setPostCode("220004");
     address.setHotel(hotel);
     hotel.setAddress(address);
 
     Contact contact = new Contact();
-    contact.setPhoneNumber(DEFAULT_PHONE);
+    contact.setPhone(DEFAULT_PHONE);
     contact.setEmail(DEFAULT_EMAIL);
     contact.setHotel(hotel);
-    hotel.getContacts().add(contact);
+    hotel.setContacts(contact);
 
     return hotel;
   }
@@ -61,10 +61,9 @@ public class HotelTestData {
         DEFAULT_NAME,
         DEFAULT_BRAND,
         "Test description",
-        new AddressDto("9", "Pobediteley Avenue", DEFAULT_CITY, DEFAULT_COUNTRY, "220004"),
-        List.of(new ContactDto(DEFAULT_PHONE, DEFAULT_EMAIL)),
-        LocalTime.of(14, 0),
-        LocalTime.of(12, 0)
+        new AddressDto(9, "Pobediteley Avenue", DEFAULT_CITY, DEFAULT_COUNTRY, "220004"),
+        new ContactDto(DEFAULT_PHONE, DEFAULT_EMAIL),
+        new ArrivalTimeDto(LocalTime.of(14, 0), LocalTime.of(12, 0))
     );
   }
 
@@ -74,9 +73,8 @@ public class HotelTestData {
         DEFAULT_NAME,
         DEFAULT_BRAND,
         "Test description",
-        LocalTime.of(14, 0),
-        LocalTime.of(12, 0),
-        new AddressDto("9", "Pobediteley Avenue", DEFAULT_CITY, DEFAULT_COUNTRY, "220004"),
+        new ArrivalTimeDto(        LocalTime.of(14, 0), LocalTime.of(12, 0)),
+        new AddressDto(9, "Pobediteley Avenue", DEFAULT_CITY, DEFAULT_COUNTRY, "220004"),
         List.of("Pool")
     );
   }

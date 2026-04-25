@@ -54,11 +54,9 @@ public class Hotel extends BaseEntity<Long> {
   @Builder.Default
   private List<Amenity> amenities = new LinkedList<>();
 
-  @OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER, cascade = CascadeType.ALL,
-      orphanRemoval = true)
+  @OneToOne(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true, optional = false)
   @Fetch(FetchMode.JOIN)
-  @Builder.Default
-  private List<Contact> contacts = new LinkedList<>();
+  private Contact contacts;
 
   @Override
   public final boolean equals(Object o) {

@@ -1,13 +1,14 @@
 package com.gpsolutions.hotels.domain.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record AddressDto(
 
-    @NotBlank(
+    @NotNull(
         message = "House number must be present"
     )
-    String houseNumber,
+    Integer houseNumber,
 
     @NotBlank(
         message = "Street must be present"
@@ -27,7 +28,7 @@ public record AddressDto(
     @NotBlank(
         message = "Postal code must be present"
     )
-    String postalCode
+    String postCode
 ) {
 
   @Override
@@ -37,6 +38,6 @@ public record AddressDto(
         street,
         city,
         country,
-        postalCode);
+        postCode);
   }
 }

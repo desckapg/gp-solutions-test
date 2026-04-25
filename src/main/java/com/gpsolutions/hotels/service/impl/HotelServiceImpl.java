@@ -5,7 +5,7 @@ import com.gpsolutions.hotels.domain.dto.request.HotelSpecsDto;
 import com.gpsolutions.hotels.domain.dto.response.HotelDto;
 import com.gpsolutions.hotels.domain.dto.response.HotelShortDto;
 import com.gpsolutions.hotels.domain.entity.Amenity;
-import com.gpsolutions.hotels.domain.mapper.AmenityRepository;
+import com.gpsolutions.hotels.repository.AmenityRepository;
 import com.gpsolutions.hotels.domain.mapper.HotelMapper;
 import com.gpsolutions.hotels.exception.ResourceNotFoundException;
 import com.gpsolutions.hotels.repository.HotelRepository;
